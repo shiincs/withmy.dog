@@ -1,10 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import ProfileContainer from './containers/ProfileContainer';
+import AddPlaceContainer from './containers/AddPlaceContainer';
+import MainContainer from './containers/MainContainer';
 
 function App() {
   return (
-    <div className="App">
-      <header>같이가개</header>
-    </div>
+    <Router>
+      <Route path="/profile" component={ProfileContainer} />
+      <Route path="/addplace" component={AddPlaceContainer} />
+      <Route exact path="/" component={MainContainer} />
+    </Router>
   );
 }
 
