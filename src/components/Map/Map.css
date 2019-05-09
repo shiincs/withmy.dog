@@ -1,0 +1,65 @@
+.infoOverlay {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 190px;
+  background: rgba(255, 255, 255, 1);
+  display: inline-block;
+  padding: 20px 16px;
+}
+
+.infoOverlay figure {
+  max-width: 200px;
+}
+
+.infoOverlay figure .dogImage {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  width: 108px;
+  height: 76px;
+  object-fit: cover;
+}
+
+.infoOverlay dt {
+  margin-bottom: 5px;
+}
+
+.infoOverlay dt a {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.infoOverlay dd {
+  font-size: 14px;
+  color: #7a7a7a;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.buttonList {
+  display: flex;
+  margin-top: 55px;
+  border: 1px solid #efefef;
+  border-radius: 8px;
+}
+
+.buttonList li {
+  width: 50%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonList li:first-child {
+  border-right: 1px solid #efefef;
+}
+
+.buttonList li img {
+  width: 24px;
+  height: 24px;
+}
