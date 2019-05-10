@@ -24,7 +24,6 @@ class MapContainer extends Component {
 
   fetchData() {
     const { category, fetchList } = this.props;
-    console.log(category);
     fetchList(category).then(() => console.log('map done!'));
   }
 
