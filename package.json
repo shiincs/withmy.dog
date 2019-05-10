@@ -28,7 +28,8 @@
     "rules": {
       "react/prefer-stateless-function": 0,
       "react/jsx-filename-extension": 0,
-      "react/jsx-one-expression-per-line": 0
+      "react/jsx-one-expression-per-line": 0,
+      "react/prop-types": 0
     },
     "env": {
       "browser": true,
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^4.2.0"
+    "eslint-config-prettier": "^4.2.0",
+    "redux-devtools-extension": "^2.13.8"
   }
 }
