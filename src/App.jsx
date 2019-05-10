@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import ProfileContainer from './containers/ProfileContainer';
@@ -15,8 +15,9 @@ function App() {
         <Router>
           <Route path="/profile" component={ProfileContainer} />
           <Route path="/addplace" component={AddPlaceContainer} />
-          <Route path="/:category" component={MainContainer} />
-          <Route exact path="/" component={MainContainer} />
+          <Route path="/map/:category" component={MainContainer} />
+          <Route exact path="/map" component={MainContainer} />
+          <Route exact path="/" render={() => <Redirect to="/map" />} />
         </Router>
       </MapProvider>
     </Provider>
