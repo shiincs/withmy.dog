@@ -6,27 +6,27 @@ const StoreType = () => {
   return (
     <List>
       <Item>
-        <TypeLink to="/all">
+        <TypeLink to="/map">
           <Text>모두</Text>
         </TypeLink>
       </Item>
       <Item>
-        <TypeLink to="/restaurant">
+        <TypeLink to="/map/restaurant">
           <Text>식당</Text>
         </TypeLink>
       </Item>
       <Item>
-        <TypeLink to="/cafe">
+        <TypeLink to="/map/cafe">
           <Text>카페</Text>
         </TypeLink>
       </Item>
       <Item>
-        <TypeLink to="/pub">
+        <TypeLink to="/map/pub">
           <Text>주점</Text>
         </TypeLink>
       </Item>
       <Item>
-        <TypeLink to="/etc">
+        <TypeLink to="/map/etc">
           <Text>기타</Text>
         </TypeLink>
       </Item>
@@ -39,8 +39,8 @@ export default StoreType;
 const List = styled.ul`
   display: flex;
   width: 100%;
-  height: 32px;
-  margin-bottom: 10px;
+  height: 42px;
+  padding: 0 0 10px 0;
 `;
 
 const Item = styled.li`
