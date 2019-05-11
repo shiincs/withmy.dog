@@ -43,7 +43,7 @@ const Title = styled.h1`
 `;
 
 const TitleLink = styled(Link)`
-  font-size: 1.8rem;
+  font-size: 18px;
   color: #333;
 `;
 
@@ -74,7 +74,7 @@ const AddPlace = styled(Link)`
   color: #fff;
   text-align: center;
   line-height: 32px;
-  font-size: 1.2rem;
+  font-size: 12px;
   font-weight: 600;
 `;
 
