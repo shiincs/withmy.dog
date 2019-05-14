@@ -15,9 +15,13 @@ function App() {
         <Router>
           <Route path="/profile" component={ProfileContainer} />
           <Route path="/addplace" component={AddPlaceContainer} />
-          <Route path="/map/:category" component={MainContainer} />
-          <Route exact path="/map" component={MainContainer} />
-          <Route exact path="/" render={() => <Redirect to="/map" />} />
+          <Route path="/map" component={MainContainer} />
+          {/* <Route exact path="/map" component={MainContainer} /> */}
+          <Route
+            exact
+            path="/"
+            render={() => <Redirect to="/map?category=all" />}
+          />
         </Router>
       </MapProvider>
     </Provider>
