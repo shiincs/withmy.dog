@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import queryString from 'query-string';
 
 import StoreListView from '../components/StoreListView';
 import {
@@ -39,20 +40,13 @@ class StoreListContainer extends Component {
   }
 }
 
-const mapStateToProps = (
-  state,
-  {
-    match: {
-      params: { category },
-    },
-  },
-) => {
-  const selectedCategory = category || 'all';
+const mapStateToProps = (state, { location }) => {
+  const category = queryString.parse(location.search).category || 'all';
   return {
-    list: getVisibleList(state, selectedCategory),
-    isFetching: getIsFetching(state, selectedCategory),
-    category: selectedCategory,
-    getErrorMessage: getErrorMessage(state, selectedCategory),
+    list: getVisibleList(state, category),
+    isFetching: getIsFetching(state, category),
+    category,
+    getErrorMessage: getErrorMessage(state, category),
   };
 };
 

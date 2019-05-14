@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import queryString from 'query-string';
 
 import Map from '../components/Map/Map';
 
@@ -34,20 +35,13 @@ class MapContainer extends Component {
   }
 }
 
-const mapStateToProps = (
-  state,
-  {
-    match: {
-      params: { category },
-    },
-  },
-) => {
-  const selectedCategory = category || 'all';
+const mapStateToProps = (state, { location }) => {
+  const category = queryString.parse(location.search).category || 'all';
   return {
-    list: getVisibleList(state, selectedCategory),
-    isFetching: getIsFetching(state, selectedCategory),
-    category: selectedCategory,
-    errorMessage: getErrorMessage(state, selectedCategory),
+    list: getVisibleList(state, category),
+    isFetching: getIsFetching(state, category),
+    category,
+    errorMessage: getErrorMessage(state, category),
   };
 };
 
