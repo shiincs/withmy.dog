@@ -6,27 +6,27 @@ const StoreType = () => {
   return (
     <List>
       <Item>
-        <TypeLink to="/map">
+        <TypeLink to="/map?category=all">
           <Text>모두</Text>
         </TypeLink>
       </Item>
       <Item>
-        <TypeLink to="/map/restaurant">
+        <TypeLink to="/map?category=restaurant">
           <Text>식당</Text>
         </TypeLink>
       </Item>
       <Item>
-        <TypeLink to="/map/cafe">
+        <TypeLink to="/map?category=cafe">
           <Text>카페</Text>
         </TypeLink>
       </Item>
       <Item>
-        <TypeLink to="/map/pub">
+        <TypeLink to="/map?category=pub">
           <Text>주점</Text>
         </TypeLink>
       </Item>
       <Item>
-        <TypeLink to="/map/etc">
+        <TypeLink to="/map/?category=etc">
           <Text>기타</Text>
         </TypeLink>
       </Item>
