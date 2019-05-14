@@ -60,7 +60,7 @@ export const fetchList = category => async (dispatch, getState) => {
   try {
     dispatch(fetchListRequest(category));
     const response = await api.fetchList(category);
-    console.log(response);
+
     dispatch({
       type: FETCH_LIST_SUCCESS,
       category,
