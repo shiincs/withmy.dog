@@ -5,12 +5,12 @@ import { ReactComponent as Icon } from '../assets/images/map_icon.svg';
 import footPrint from '../assets/images/footprint_off.svg';
 import writeReview from '../assets/images/review_write.svg';
 
-const StoreListView = props => {
+const StoreList = props => {
   const { list, isListOpen, handleList } = props;
 
   return (
     <StoreInfo isListOpen={isListOpen}>
-      <StoreList>
+      <List>
         {list.map(item => {
           return (
             <Item key={item.id}>
@@ -44,7 +44,7 @@ const StoreListView = props => {
             </Item>
           );
         })}
-      </StoreList>
+      </List>
       <MapOpenBtn onClick={() => handleList()}>
         <MapIcon />
       </MapOpenBtn>
@@ -52,7 +52,7 @@ const StoreListView = props => {
   );
 };
 
-export default StoreListView;
+export default StoreList;
 
 const StoreInfo = styled.div`
   width: 100%;
@@ -64,7 +64,7 @@ const StoreInfo = styled.div`
   background-color: #fff;
   transition: bottom 0.3s;
 `;
-const StoreList = styled.ul`
+const List = styled.ul`
   width: 100%;
   height: calc(100% - 75px);
   overflow-y: auto;

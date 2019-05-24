@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 
-import StoreListView from '../components/StoreListView';
+import StoreList from '../components/StoreList';
 import {
   getVisibleList,
   getIsFetching,
@@ -31,7 +31,7 @@ class StoreListContainer extends Component {
   render() {
     const { list, isListOpen, handleList } = this.props;
     return (
-      <StoreListView
+      <StoreList
         list={list}
         isListOpen={isListOpen}
         handleList={() => handleList()}
