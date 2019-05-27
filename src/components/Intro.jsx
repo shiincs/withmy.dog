@@ -1,11 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Intro = props => {
   const { isSecondOpen, isThirdOpen, isFourthOpen, handleNextArticle } = props;
   return (
     <Wrapper>
       <Section>
+        <Header>
+          <Link to="/map?category=all">X</Link>
+          <Link
+            to="/map?category=all"
+            onClick={() => {
+              localStorage.setItem('noMoreIntro', 1);
+            }}
+          >
+            다시 보지 않기
+          </Link>
+        </Header>
         <Article1>
           페이지1
           <button
@@ -35,7 +47,7 @@ const Intro = props => {
         </Article3>
         <Article4 isFourthOpen={isFourthOpen}>
           페이지4
-          <button type="button">시작</button>
+          <Link to="/map?category=all">시작</Link>
         </Article4>
       </Section>
     </Wrapper>
@@ -54,12 +66,22 @@ const Section = styled.div`
   left: 0;
   overflow: hidden;
 `;
+const Header = styled.div`
+  background: orange;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+`;
 const Article1 = styled.div`
   background-color: red;
   width: 100%;
   height: 100vh;
   position: absolute;
-  top: 0;
+  top: 30px;
   left: 0;
 `;
 const Article2 = styled.div`
@@ -67,7 +89,7 @@ const Article2 = styled.div`
   width: 100%;
   height: 100vh;
   position: absolute;
-  top: 0;
+  top: 30px;
   left: ${props => (props.isSecondOpen ? 0 : '100vw')};
   transition: left 0.3s;
 `;
@@ -76,7 +98,7 @@ const Article3 = styled.div`
   width: 100%;
   height: 100vh;
   position: absolute;
-  top: 0;
+  top: 30px;
   left: ${props => (props.isThirdOpen ? 0 : '100vw')};
   transition: left 0.3s;
 `;
@@ -85,7 +107,7 @@ const Article4 = styled.div`
   width: 100%;
   height: 100vh;
   position: absolute;
-  top: 0;
+  top: 30px;
   left: ${props => (props.isFourthOpen ? 0 : '100vw')};
   transition: left 0.3s;
 `;

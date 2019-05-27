@@ -17,13 +17,15 @@ function App() {
           <Route path="/profile" component={ProfileContainer} />
           <Route path="/addplace" component={AddPlaceContainer} />
           <Route path="/map" component={MainContainer} />
-          <Route exact path="/" component={IntroContainer} />
-          {/* <Route exact path="/map" component={MainContainer} /> */}
-          {/* <Route
-            exact
-            path="/"
-            render={() => <Redirect to="/map?category=all" />}
-          /> */}
+          {localStorage.getItem('noMoreIntro') ? (
+            <Route
+              exact
+              path="/"
+              render={() => <Redirect to="/map?category=all" />}
+            />
+          ) : (
+            <Route exact path="/" component={IntroContainer} />
+          )}
         </Router>
       </MapProvider>
     </Provider>
