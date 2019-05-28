@@ -102,6 +102,7 @@ const ResultList = styled.ul`
     button {
       width: 24px;
       height: 24px;
+      background-color: #fff;
       background-image: url(${SelectBtn});
       position: absolute;
       top: 50%;
