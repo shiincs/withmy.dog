@@ -16,7 +16,7 @@ const Header = () => {
             <Profile to="/profile">프로필</Profile>
           </li>
           <li>
-            <AddPlace to="/addplace">
+            <AddPlace to="/addplace/search">
               <AddPlaceLogo />
               등록
             </AddPlace>
