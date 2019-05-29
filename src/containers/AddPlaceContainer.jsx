@@ -2,16 +2,15 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { encode } from 'punycode';
 import AddPlace from '../components/AddPlace';
 import { withMap } from '../contexts/MapContext';
 
 class AddPlaceContainer extends Component {
   state = {
     inputValue: '',
-    isPlaceSelected: false,
     selectedName: '',
     selectedAddress: '',
+    isPlaceSelected: false,
   };
 
   handleChange = e => {
@@ -21,9 +20,9 @@ class AddPlaceContainer extends Component {
   };
 
   handleSelect = e => {
-    const selectedName = e.target.parentNode.firstChild.children[0].innerText;
+    const selectedName = e.target.parentNode.firstChild.children[0].textContent;
     const selectedAddress =
-      e.target.parentNode.firstChild.children[1].innerText;
+      e.target.parentNode.firstChild.children[1].textContent;
     this.setState({
       isPlaceSelected: true,
       selectedName,
@@ -47,19 +46,29 @@ class AddPlaceContainer extends Component {
 
     // 검색결과 항목을 Element로 반환하는 함수입니다
     const getListItem = places => {
-      const el = document.createElement('li');
-      el.innerHTML = `<dl>
-        <dt>${places.place_name}</dt>
-        <dd>${places.address_name}</dd>
-      </dl>
-      <button type="button"></button>
-      `;
+      const li = document.createElement('li');
+      const dl = document.createElement('dl');
+      const dt = document.createElement('dt');
+      const dd = document.createElement('dd');
+      const btn = document.createElement('button');
 
-      el.className = 'searchListItem';
-      el.addEventListener('click', ev => {
-        this.handleSelect(ev);
-      });
-      return el;
+      btn.setAttribute('type', 'button');
+
+      dt.textContent = places.place_name;
+      dd.textContent = places.address_name;
+
+      dl.appendChild(dt);
+      dl.appendChild(dd);
+
+      li.appendChild(dl);
+      li.appendChild(btn);
+      li.className = 'searchListItem';
+      li.onclick = event => {
+        if (event.target.nodeName !== 'BUTTON') return;
+        this.handleSelect(event);
+      };
+
+      return li;
     };
 
     // 검색결과 목록의 자식 Element를 제거하는 함수입니다
@@ -97,7 +106,7 @@ class AddPlaceContainer extends Component {
         itemEl.className = 'paginationItem';
         const linkEl = document.createElement('a');
         linkEl.className = 'paginationLink';
-        linkEl.innerHTML = i;
+        linkEl.textContent = i;
 
         if (i === pagination.current) {
           linkEl.classList.add('open');
