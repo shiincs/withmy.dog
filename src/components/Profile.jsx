@@ -17,7 +17,7 @@ const Profile = () => {
       <FootPrint />
       <ReviewAndPlace />
       <ServiceIntroduction />
-      <CloseButton to="/">X</CloseButton>
+      <CloseButton to="/">&#215;</CloseButton>
     </SectionWrapper>
   );
 };
@@ -29,18 +29,17 @@ const SectionWrapper = styled.section`
   position: relative;
 `;
 const SectionTitle = styled.h1`
-  width: 2px;
-  height: 2px;
+  width: 1px;
+  height: 1px;
   margin: -1px;
   overflow: hidden;
+  clip: rect(0, 0, 0, 0);
 `;
 const CloseButton = styled(Link)`
-  width: 25px;
-  height: 25px;
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
   position: absolute;
-  top: 25px;
+  top: 20px;
   right: 25px;
 
   &:link,
