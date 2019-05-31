@@ -7,6 +7,7 @@ import AddPlaceContainer from './containers/AddPlaceContainer';
 import MainContainer from './containers/MainContainer';
 import IntroContainer from './containers/IntroContainer';
 import AddPlaceFormContainer from './containers/AddPlaceFormContainer';
+import LoginFormContainer from './containers/LoginFormContainer';
 import { MapProvider } from './contexts/MapContext';
 import store from './store';
 
@@ -16,7 +17,8 @@ function App() {
       <MapProvider>
         <Router>
           <Route path="/map" component={MainContainer} />
-          <Route path="/profile" component={ProfileContainer} />
+          <Route path="/profile/login" component={LoginFormContainer} />
+          <Route exact path="/profile" component={ProfileContainer} />
           <Route path="/addplace/search" component={AddPlaceContainer} />
           <Route path="/addplace/form" component={AddPlaceFormContainer} />
           {localStorage.getItem('noMoreIntro') ? (
