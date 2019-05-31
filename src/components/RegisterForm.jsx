@@ -30,7 +30,8 @@ const Form = styled.form`
 const InputID = styled.input`
   width: 210px;
   height: 45px;
-  background-color: #e0e0e0;
+  background-color: #f2f2f2;
+  border: 1px solid #e0e0e0;
   padding: 12px 17px;
   font-size: 14px;
   margin-bottom: 10px;
@@ -40,7 +41,8 @@ const InputID = styled.input`
 const InputPW = styled.input`
   width: 210px;
   height: 45px;
-  background-color: #e0e0e0;
+  background-color: #f2f2f2;
+  border: 1px solid #e0e0e0;
   padding: 12px 17px;
   font-size: 14px;
   margin-bottom: 10px;
