@@ -8,9 +8,9 @@ const Intro = props => {
     <Wrapper>
       <Section>
         <Header>
-          <Link to="/map?category=all">X</Link>
+          <Link to="/place?category=all">X</Link>
           <Link
-            to="/map?category=all"
+            to="/place?category=all"
             onClick={() => {
               localStorage.setItem('noMoreIntro', 1);
             }}
@@ -47,7 +47,7 @@ const Intro = props => {
         </Article3>
         <Article4 isFourthOpen={isFourthOpen}>
           페이지4
-          <Link to="/map?category=all">시작</Link>
+          <Link to="/place?category=all">시작</Link>
         </Article4>
       </Section>
     </Wrapper>

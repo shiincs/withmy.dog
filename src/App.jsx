@@ -16,7 +16,7 @@ function App() {
     <Provider store={store}>
       <MapProvider>
         <Router>
-          <Route path="/map" component={MainContainer} />
+          <Route path="/place" component={MainContainer} />
           <Route path="/profile/login" component={LoginFormContainer} />
           <Route exact path="/profile" component={ProfileContainer} />
           <Route path="/addplace/search" component={AddPlaceContainer} />
@@ -25,7 +25,7 @@ function App() {
             <Route
               exact
               path="/"
-              render={() => <Redirect to="/map?category=all" />}
+              render={() => <Redirect to="/place?category=all" />}
             />
           ) : (
             <Route exact path="/" component={IntroContainer} />
