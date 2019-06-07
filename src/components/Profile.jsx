@@ -7,13 +7,18 @@ import ProfileHeaderDefault from './ProfileHeaderDefault';
 import FootPrint from './FootPrint';
 import ReviewAndPlace from './ReviewAndPlace';
 import ServiceIntroduction from './ServiceIntroduction';
+import UserInfoContainer from '../containers/UserInfoContainer';
 
 const Profile = () => {
   return (
     <SectionWrapper>
-      <ProfileHeaderDefault />
       <SectionTitle>프로필</SectionTitle>
-      <RegisterFormContainer />
+      {/* Default Header */}
+      {/* <ProfileHeaderDefault /> */}
+      {/* RegisterForm (not logined) */}
+      {/* <RegisterFormContainer /> */}
+      {/* UserInfo (when logined) */}
+      <UserInfoContainer />
       <FootPrint />
       <ReviewAndPlace />
       <ServiceIntroduction />
