@@ -12,8 +12,8 @@ const LoginForm = () => {
         멍멍이 프로필을 만들 수 있어요!
       </LoginIntroduce>
       <Form>
-        <InputID type="text" placeholder="이메일 입력" />
-        <InputPW type="password" placeholder="비밀번호 입력" />
+        <InputID type="text" placeholder="이메일 입력" required />
+        <InputPW type="password" placeholder="비밀번호 입력" required />
         <InputAutoLogin type="checkbox" id="autoLogin" />
         <LabelAutoLogin htmlFor="autoLogin">자동 로그인</LabelAutoLogin>
         <InputSubmit type="submit" value="로그인" />
