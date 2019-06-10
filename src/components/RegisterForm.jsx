@@ -6,8 +6,8 @@ const RegisterForm = () => {
   return (
     <>
       <Form>
-        <InputID type="text" placeholder="이메일 입력" />
-        <InputPW type="password" placeholder="비밀번호 입력" />
+        <InputID type="text" placeholder="이메일 입력" required />
+        <InputPW type="password" placeholder="비밀번호 입력" required />
         <InputSubmit type="submit" value="계정 생성" />
       </Form>
       <GoToLogin>
