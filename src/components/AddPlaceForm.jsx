@@ -14,7 +14,9 @@ export default function AddPlaceForm(props) {
     handleCheckInput,
     handleTextInput,
   } = props;
-
+  // TODO
+  // 1. form input validation 디자인과 결합해서 로직 짜야함
+  // 2. 사진 추가하기 버튼 레이아웃 및 file system 연동
   return (
     <FormSection>
       <PlaceInfo>
@@ -38,6 +40,7 @@ export default function AddPlaceForm(props) {
             <Input
               type="radio"
               id="cafe"
+              name="placeType"
               checked={placeType === 'cafe'}
               onChange={() => handleSelectInput('placeType', 'cafe')}
             />
@@ -45,6 +48,7 @@ export default function AddPlaceForm(props) {
             <Input
               type="radio"
               id="pub"
+              name="placeType"
               checked={placeType === 'pub'}
               onChange={() => handleSelectInput('placeType', 'pub')}
             />
@@ -52,6 +56,7 @@ export default function AddPlaceForm(props) {
             <Input
               type="radio"
               id="etc"
+              name="placeType"
               checked={placeType === 'etc'}
               onChange={() => handleSelectInput('placeType', 'etc')}
             />
@@ -61,9 +66,11 @@ export default function AddPlaceForm(props) {
             <QuestionTitle>
               가게에 함께 간 강아지는 어떤 아이인가요?
             </QuestionTitle>
+            {/* checkbox validation은 required만으로는 안되서 따로 로직 짜야함 */}
             <Input
               type="checkbox"
               id="small"
+              name="dogType"
               checked={dogType.some(type => type === 'small')}
               onChange={() => handleCheckInput('dogType', 'small')}
             />
@@ -71,6 +78,7 @@ export default function AddPlaceForm(props) {
             <Input
               type="checkbox"
               id="big"
+              name="dogType"
               checked={dogType.some(type => type === 'big')}
               onChange={() => handleCheckInput('dogType', 'big')}
             />
@@ -78,9 +86,11 @@ export default function AddPlaceForm(props) {
           </QuestionWrapper>
           <QuestionWrapper>
             <QuestionTitle>가게 안에서 강아지가 어떻게 있었나요?</QuestionTitle>
+            {/* checkbox validation은 required만으로는 안되서 따로 로직 짜야함 */}
             <Input
               type="checkbox"
               id="offleash"
+              name="existType"
               checked={existType.some(type => type === 'offleash')}
               onChange={() => handleCheckInput('existType', 'offleash')}
             />
@@ -88,6 +98,7 @@ export default function AddPlaceForm(props) {
             <Input
               type="checkbox"
               id="seat"
+              name="existType"
               checked={existType.some(type => type === 'seat')}
               onChange={() => handleCheckInput('existType', 'seat')}
             />
@@ -95,6 +106,7 @@ export default function AddPlaceForm(props) {
             <Input
               type="checkbox"
               id="bag"
+              name="existType"
               checked={existType.some(type => type === 'bag')}
               onChange={() => handleCheckInput('existType', 'bag')}
             />
@@ -102,6 +114,7 @@ export default function AddPlaceForm(props) {
             <Input
               type="checkbox"
               id="cage"
+              name="existType"
               checked={existType.some(type => type === 'cage')}
               onChange={() => handleCheckInput('existType', 'cage')}
             />
@@ -114,13 +127,16 @@ export default function AddPlaceForm(props) {
             <Input
               type="radio"
               id="entire"
+              name="accessType"
               checked={accessType === 'entire'}
               onChange={() => handleSelectInput('accessType', 'entire')}
+              required
             />
             <Label htmlFor="entire">전체출입</Label>
             <Input
               type="radio"
               id="partial"
+              name="accessType"
               checked={accessType === 'partial'}
               onChange={() => handleSelectInput('accessType', 'partial')}
             />
@@ -128,6 +144,7 @@ export default function AddPlaceForm(props) {
             <Input
               type="radio"
               id="unknownAccess"
+              name="accessType"
               checked={accessType === 'unknownAccess'}
               onChange={() => handleSelectInput('accessType', 'unknownAccess')}
             />
@@ -140,13 +157,16 @@ export default function AddPlaceForm(props) {
             <Input
               type="radio"
               id="needContact"
+              name="contactType"
               checked={contactType === 'needContact'}
               onChange={() => handleSelectInput('contactType', 'needContact')}
+              required
             />
             <Label htmlFor="needContact">방문전 연락 필요</Label>
             <Input
               type="radio"
               id="noContact"
+              name="contactType"
               checked={contactType === 'noContact'}
               onChange={() => handleSelectInput('contactType', 'noContact')}
             />
@@ -154,6 +174,7 @@ export default function AddPlaceForm(props) {
             <Input
               type="radio"
               id="unknownContact"
+              name="contactType"
               checked={contactType === 'unknownContact'}
               onChange={() =>
                 handleSelectInput('contactType', 'unknownContact')
