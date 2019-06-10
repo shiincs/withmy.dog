@@ -20,7 +20,13 @@ export default class AddPlaceFormContainer extends Component {
   };
 
   handleCheckInput = (name, type) => {
-    const prevState = [...this.state[name]];
+    const { dogType, existType } = this.state;
+    let prevState;
+    if (name === 'dogType') {
+      prevState = [...dogType];
+    } else if (name === 'existType') {
+      prevState = [...existType];
+    }
     let newState = null;
     if (prevState.some(item => item === type)) {
       newState = prevState.filter(item => item !== type);
