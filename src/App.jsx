@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 
 import ProfileContainer from './containers/ProfileContainer';
 import AddPlaceContainer from './containers/AddPlaceContainer';
@@ -9,11 +9,19 @@ import IntroContainer from './containers/IntroContainer';
 import AddPlaceFormContainer from './containers/AddPlaceFormContainer';
 import LoginFormContainer from './containers/LoginFormContainer';
 import { MapProvider } from './contexts/MapContext';
-import store from './store';
 
-function App() {
-  return (
-    <Provider store={store}>
+import { fetchRefresh } from './ducks/user';
+
+class App extends React.Component {
+  componentDidMount() {
+    const { fetchRefresh } = this.props;
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+    fetchRefresh(accessToken, refreshToken);
+  }
+
+  render() {
+    return (
       <MapProvider>
         <Router>
           <Route path="/place" component={MainContainer} />
@@ -32,8 +40,14 @@ function App() {
           )}
         </Router>
       </MapProvider>
-    </Provider>
-  );
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  payload: state.payload,
+});
+export default connect(
+  mapStateToProps,
+  { fetchRefresh },
+)(App);
