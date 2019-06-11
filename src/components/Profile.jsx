@@ -14,11 +14,11 @@ const Profile = () => {
     <SectionWrapper>
       <SectionTitle>프로필</SectionTitle>
       {/* Default Header */}
-      {/* <ProfileHeaderDefault /> */}
+      <ProfileHeaderDefault />
       {/* RegisterForm (not logined) */}
-      {/* <RegisterFormContainer /> */}
+      <RegisterFormContainer />
       {/* UserInfo (when logined) */}
-      <UserInfoContainer />
+      {/* <UserInfoContainer /> */}
       <FootPrint />
       <ReviewAndPlace />
       <ServiceIntroduction />
