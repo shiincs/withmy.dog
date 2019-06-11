@@ -2,12 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const RegisterForm = () => {
+const RegisterForm = props => {
+  const { handleInput, handleRegister, email, password } = props;
   return (
     <>
-      <Form>
-        <InputID type="text" placeholder="이메일 입력" required />
-        <InputPW type="password" placeholder="비밀번호 입력" required />
+      <Form onSubmit={e => handleRegister(email, password, e)}>
+        <InputID
+          type="text"
+          placeholder="이메일 입력"
+          required
+          onChange={e => handleInput('email', e)}
+          value={email}
+        />
+        <InputPW
+          type="password"
+          placeholder="비밀번호 입력"
+          required
+          onChange={e => handleInput('password', e)}
+          value={password}
+        />
         <InputSubmit type="submit" value="계정 생성" />
       </Form>
       <GoToLogin>
