@@ -17,6 +17,7 @@ class App extends React.Component {
     const { fetchRefresh } = this.props;
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
+    if (!accessToken || !refreshToken) return;
     fetchRefresh(accessToken, refreshToken);
   }
 
@@ -45,7 +46,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  payload: state.payload,
+  userInfo: state.user.userInfo,
 });
 export default connect(
   mapStateToProps,
