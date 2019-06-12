@@ -161,6 +161,7 @@ class AddPlaceContainer extends Component {
       <>
         {isPlaceSelected ? (
           <Redirect
+            push
             to={`/addplace/form?name=${encodeURIComponent(
               selectedName,
             )}&address=${encodeURIComponent(selectedAddress)}`}
