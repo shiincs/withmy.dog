@@ -2,7 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const LoginForm = () => {
+const LoginForm = props => {
+  const {
+    email,
+    password,
+    autoLogin,
+    handleInput,
+    handleLogin,
+    handleAutoLogin,
+  } = props;
   return (
     <LoginSection>
       <LinkToHome to="/">가치가개</LinkToHome>
@@ -11,10 +19,27 @@ const LoginForm = () => {
         <br />
         멍멍이 프로필을 만들 수 있어요!
       </LoginIntroduce>
-      <Form>
-        <InputID type="text" placeholder="이메일 입력" required />
-        <InputPW type="password" placeholder="비밀번호 입력" required />
-        <InputAutoLogin type="checkbox" id="autoLogin" />
+      <Form onSubmit={e => handleLogin(email, password, e)}>
+        <InputID
+          type="text"
+          placeholder="이메일 입력"
+          required
+          onChange={e => handleInput('email', e)}
+          value={email}
+        />
+        <InputPW
+          type="password"
+          placeholder="비밀번호 입력"
+          required
+          onChange={e => handleInput('password', e)}
+          value={password}
+        />
+        <InputAutoLogin
+          type="checkbox"
+          id="autoLogin"
+          onChange={e => handleAutoLogin(e)}
+          checked={!!autoLogin}
+        />
         <LabelAutoLogin htmlFor="autoLogin">자동 로그인</LabelAutoLogin>
         <InputSubmit type="submit" value="로그인" />
       </Form>
@@ -129,4 +154,5 @@ const InputSubmit = styled.input`
   padding: 12px 17px;
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
 `;
