@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import RegisterFormContainer from '../containers/RegisterFormContainer';
 import ProfileHeaderDefault from './ProfileHeaderDefault';
@@ -9,25 +10,35 @@ import ReviewAndPlace from './ReviewAndPlace';
 import ServiceIntroduction from './ServiceIntroduction';
 import UserInfoContainer from '../containers/UserInfoContainer';
 
-const Profile = () => {
+function Profile(props) {
+  const { userInfo } = props;
   return (
     <SectionWrapper>
       <SectionTitle>프로필</SectionTitle>
-      {/* Default Header */}
-      <ProfileHeaderDefault />
-      {/* RegisterForm (not logined) */}
-      <RegisterFormContainer />
-      {/* UserInfo (when logined) */}
-      {/* <UserInfoContainer /> */}
+      {Object.keys(userInfo).length > 0 ? (
+        <UserInfoContainer />
+      ) : (
+        <>
+          <ProfileHeaderDefault />
+          <RegisterFormContainer />
+        </>
+      )}
       <FootPrint />
       <ReviewAndPlace />
       <ServiceIntroduction />
       <CloseButton to="/">&#215;</CloseButton>
     </SectionWrapper>
   );
-};
+}
 
-export default Profile;
+const mapStateToProps = state => ({
+  userInfo: state.user.userInfo,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(Profile);
 
 const SectionWrapper = styled.section`
   padding-top: 35px;
