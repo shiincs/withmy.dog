@@ -56,6 +56,22 @@ const fetchLoginFailure = message => ({
 });
 
 // fetch action
+export const fetchRefresh = (authorization, refresh) => async dispatch => {
+  try {
+    dispatch(fetchRefreshRequest());
+    const {
+      data
+    } = await api.get('/users', {
+      headers: {
+        refresh,
+      },
+    });
+    dispatch(fetchRefreshSuccess(data));
+  } catch (e) {
+    dispatch(fetchRefreshFailure(e.message));
+  }
+};
+
 export const fetchRegister = (email, password) => async dispatch => {
   try {
     dispatch(fetchRegisterRequest());
@@ -72,25 +88,15 @@ export const fetchRegister = (email, password) => async dispatch => {
     });
     localStorage.setItem('accessToken', access);
     localStorage.setItem('refreshToken', refresh);
+    dispatch(
+      fetchRefresh(
+        localStorage.getItem('accessToken'),
+        localStorage.getItem('refreshToken'),
+      ),
+    );
     dispatch(fetchRegisterSuccess());
   } catch (e) {
     dispatch(fetchRegisterFailure(e.message));
-  }
-};
-
-export const fetchRefresh = (authorization, refresh) => async dispatch => {
-  try {
-    dispatch(fetchRefreshRequest());
-    const {
-      data
-    } = await api.get('/users', {
-      headers: {
-        refresh,
-      },
-    });
-    dispatch(fetchRefreshSuccess(data));
-  } catch (e) {
-    dispatch(fetchRefreshFailure(e.message));
   }
 };
 
