@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import RegisterForm from '../components/RegisterForm';
 import { fetchRegister } from '../ducks/user';
@@ -23,18 +24,25 @@ class RegisterFormContainer extends Component {
   };
 
   render() {
+    const { isRegistered } = this.props;
     return (
-      <RegisterForm
-        {...this.state}
-        handleInput={this.handleInput}
-        handleRegister={this.handleRegister}
-      />
+      <>
+        {isRegistered ? (
+          <Redirect to="/" />
+        ) : (
+          <RegisterForm
+            {...this.state}
+            handleInput={this.handleInput}
+            handleRegister={this.handleRegister}
+          />
+        )}
+      </>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  payload: state.payload,
+  isRegistered: state.user.register,
 });
 
 export default connect(
