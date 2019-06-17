@@ -13,7 +13,7 @@
 
 ## Project Info
 
-- 개발 도구
+- 개발 환경
 
   - Language - `JavaScript ES6+` / `HTML5` / `CSS3(& Sass)`
   - Library - `react v16.8.6` / `react-router-dom v5.0.0`/ `redux v4.0.1` / `react-redux v7.0.3` / `redux-thunk v2.3.0` / `axios v0.19.0` / `styled-components v4.2.0` / `lodash v4.17.11` / `query-string v6.6.0`
