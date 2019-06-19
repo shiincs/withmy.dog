@@ -6,8 +6,9 @@ import ProfileContainer from './containers/ProfileContainer';
 import AddPlaceContainer from './containers/AddPlaceContainer';
 import MainContainer from './containers/MainContainer';
 import IntroContainer from './containers/IntroContainer';
-import AddPlaceFormContainer from './containers/AddPlaceFormContainer';
 import LoginFormContainer from './containers/LoginFormContainer';
+import AddPlaceFormContainer from './containers/AddPlaceFormContainer';
+import AddReviewFormContainer from './containers/AddReviewFormContainer';
 import { MapProvider } from './contexts/MapContext';
 
 import { fetchRefresh } from './ducks/user';
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Route exact path="/profile" component={ProfileContainer} />
           <Route path="/addplace/search" component={AddPlaceContainer} />
           <Route path="/addplace/form" component={AddPlaceFormContainer} />
+          <Route path="/review/form" component={AddReviewFormContainer} />
           {localStorage.getItem('noMoreIntro') ? (
             <Route
               exact
