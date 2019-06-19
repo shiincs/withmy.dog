@@ -6,7 +6,6 @@ import SectionHeader from './SectionHeader';
 
 const AddPlaceDone = props => {
   const { qs } = props;
-  console.log(qs);
   return (
     <DoneSection>
       <SectionHeader>독플 등록</SectionHeader>
@@ -19,7 +18,9 @@ const AddPlaceDone = props => {
           <br />
           이웃 강아지들에게 큰 도움이 될거에요
         </Content>
-        <GoToReview to="/">가게 리뷰 작성하기</GoToReview>
+        <GoToReview to={`/review/form?name=${qs.name}&address=${qs.address}`}>
+          가게 리뷰 작성하기
+        </GoToReview>
         <GoToMain to="/">메인으로 가기</GoToMain>
       </InfoWrapper>
     </DoneSection>
