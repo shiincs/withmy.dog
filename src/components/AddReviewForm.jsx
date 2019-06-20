@@ -187,6 +187,7 @@ const AddReviewForm = props => {
             </FileInputButton>
             {// Issue) map 돌리면서 index를 렌더링할 컴포넌트의 key로 넘겨주는 것은 lint에서 걸린다. (bad practice)
             // 따라서 index를 대체할 고유한 값을 찾아서 key로 넘겨줘야 한다.
+            // --> 파일의 이름이 같을(확장자까지 같을) 경우는 없기 떄문에 파일 이름을 고유하다고 보고 key로 넘겨주었다.
             fileList.map((file, idx) => {
               return (
                 <ImageThumbnail
@@ -312,7 +313,7 @@ const FileInput = styled.input`
 const FileUploadIcon = styled(FileUpload)`
   width: 50%;
   height: 30%;
-  margin-bottom: 10%;
+  margin-bottom: 10px;
 `;
 const FileInputButton = styled.div`
   display: flex;
