@@ -16,17 +16,22 @@ const ImageThumbnail = props => {
     };
   });
 
-  const handleOverlay = e => {
-    e.persist();
+  const handleOverlay = () => {
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent,
+      )
+    )
+      return;
     setOverlay(!overlay);
   };
 
   return imageSrc ? (
     <ThumbnailWrapper
       length={length}
+      onMouseEnter={() => handleOverlay()}
+      onMouseLeave={() => handleOverlay()}
       onClick={() => handleFileRemove(idx)}
-      onMouseEnter={e => handleOverlay(e)}
-      onMouseLeave={e => handleOverlay(e)}
     >
       {overlay ? (
         <Overlay>
