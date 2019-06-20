@@ -190,7 +190,7 @@ const AddReviewForm = props => {
             fileList.map((file, idx) => {
               return (
                 <ImageThumbnail
-                  key={idx}
+                  key={file.name}
                   idx={idx}
                   file={file}
                   length={fileList.length}
