@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as Remove } from '../assets/images/close.svg';
 
 const ImageThumbnail = props => {
-  let imageBox = null;
+  let imageBox = null; // ref 변수
   const { idx, file, length, handleFileRemove } = props;
   const [imageSrc, setImageSrc] = useState(null);
   const [overlay, setOverlay] = useState(false);
@@ -34,6 +34,7 @@ const ImageThumbnail = props => {
       onMouseEnter={() => handleOverlay()}
       onMouseLeave={() => handleOverlay()}
       onClick={() => {
+        // 뷰에서 먼저 없애고 나서 상태에 반영한다.
         imageBox.style.display = 'none';
         handleFileRemove(idx);
       }}
