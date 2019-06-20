@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as Remove } from '../assets/images/close.svg';
 
 const ImageThumbnail = props => {
+  let imageBox = null;
   const { idx, file, length, handleFileRemove } = props;
   const [imageSrc, setImageSrc] = useState(null);
   const [overlay, setOverlay] = useState(false);
@@ -28,10 +29,17 @@ const ImageThumbnail = props => {
 
   return imageSrc ? (
     <ThumbnailWrapper
+      id={idx}
       length={length}
       onMouseEnter={() => handleOverlay()}
       onMouseLeave={() => handleOverlay()}
-      onClick={() => handleFileRemove(idx)}
+      onClick={() => {
+        imageBox.style.display = 'none';
+        handleFileRemove(idx);
+      }}
+      ref={box => {
+        imageBox = box;
+      }}
     >
       {overlay ? (
         <Overlay>
