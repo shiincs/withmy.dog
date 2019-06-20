@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import queryString from 'query-string';
 
 import AddReviewForm from '../components/AddReviewForm';
+import AddReviewDone from '../components/AddReviewDone';
 
 export default class AddReviewFormContainer extends Component {
   state = {
@@ -10,7 +11,9 @@ export default class AddReviewFormContainer extends Component {
     accessType: '',
     contactType: '',
     textInfo: '',
+    textCount: 0,
     fileList: [],
+    addReviewDone: false,
   };
 
   handleSelectInput = (name, type) => {
@@ -39,9 +42,17 @@ export default class AddReviewFormContainer extends Component {
   };
 
   handleTextInput = e => {
-    this.setState({
-      textInfo: e.target.value,
-    });
+    if (e.target.value.length <= 300) {
+      this.setState({
+        textInfo: e.target.value,
+        textCount: e.target.value.length,
+      });
+    } else {
+      this.setState({
+        textInfo: e.target.value.slice(0, 299),
+        textCount: 300,
+      });
+    }
   };
 
   handleFileInput = e => {
@@ -53,18 +64,40 @@ export default class AddReviewFormContainer extends Component {
     }));
   };
 
+  handleFileRemove = idx => {
+    this.setState(prevState => ({
+      fileList: [...prevState.fileList.filter((file, index) => index !== idx)],
+    }));
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState({
+      addReviewDone: true,
+    });
+  };
+
   render() {
+    const { addReviewDone } = this.state;
     const { location } = this.props;
     const qs = queryString.parse(location.search);
     return (
-      <AddReviewForm
-        {...this.state}
-        qs={qs}
-        handleSelectInput={this.handleSelectInput}
-        handleCheckInput={this.handleCheckInput}
-        handleTextInput={this.handleTextInput}
-        handleFileInput={this.handleFileInput}
-      />
+      <>
+        {addReviewDone ? (
+          <AddReviewDone />
+        ) : (
+          <AddReviewForm
+            {...this.state}
+            qs={qs}
+            handleSelectInput={this.handleSelectInput}
+            handleCheckInput={this.handleCheckInput}
+            handleTextInput={this.handleTextInput}
+            handleFileInput={this.handleFileInput}
+            handleFileRemove={this.handleFileRemove}
+            handleSubmit={this.handleSubmit}
+          />
+        )}
+      </>
     );
   }
 }

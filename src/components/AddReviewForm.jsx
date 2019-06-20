@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import SectionHeader from './SectionHeader';
 import ImageThumbnail from './ImageThumbnail';
 
+import { ReactComponent as FileUpload } from '../assets/images/file-upload.svg';
+
 const AddReviewForm = props => {
   let fileInput = null;
   const handleClick = () => {
@@ -16,12 +18,16 @@ const AddReviewForm = props => {
     accessType,
     contactType,
     textInfo,
+    textCount,
     fileList,
     handleSelectInput,
     handleCheckInput,
     handleTextInput,
     handleFileInput,
+    handleFileRemove,
+    handleSubmit,
   } = props;
+
   return (
     <FormSection>
       <SectionHeader>리뷰 등록</SectionHeader>
@@ -29,7 +35,7 @@ const AddReviewForm = props => {
         <PlaceName>{qs.name}</PlaceName>
         <PlaceAddress>{qs.address}</PlaceAddress>
       </PlaceInfo>
-      <Form>
+      <Form onSubmit={e => handleSubmit(e)}>
         <fieldset>
           <Legend>리뷰 작성</Legend>
           <QuestionWrapper>
@@ -159,25 +165,40 @@ const AddReviewForm = props => {
               value={textInfo}
               onChange={e => handleTextInput(e)}
             />
-            <WordCount>0 / 300</WordCount>
+            <WordCount>{textCount} / 300</WordCount>
           </TextAreaWrapper>
-          <FileInput
-            type="file"
-            accept="image/*"
-            multiple
-            ref={input => {
-              fileInput = input;
-            }}
-            onChange={e => handleFileInput(e)}
-          />
-          <FileInputButton onClick={() => handleClick()}>
-            {`${fileList.length} / 7`}
-          </FileInputButton>
-          {// Issue) map 돌리면서 index를 렌더링할 컴포넌트의 key로 넘겨주는 것은 lint에서 걸린다. (bad practice)
-          // 따라서 index를 대체할 고유한 값을 찾아서 key로 넘겨줘야 한다.
-          fileList.map((file, idx) => {
-            return <ImageThumbnail key={idx} file={file} />;
-          })}
+          <FileInputWrapper length={fileList.length}>
+            <FileInput
+              type="file"
+              accept="image/*"
+              multiple
+              ref={input => {
+                fileInput = input;
+              }}
+              onChange={e => handleFileInput(e)}
+              disabled={fileList.length === 7}
+            />
+            <FileInputButton
+              onClick={() => handleClick()}
+              length={fileList.length}
+            >
+              <FileUploadIcon />
+              {`${fileList.length} / 7`}
+            </FileInputButton>
+            {// Issue) map 돌리면서 index를 렌더링할 컴포넌트의 key로 넘겨주는 것은 lint에서 걸린다. (bad practice)
+            // 따라서 index를 대체할 고유한 값을 찾아서 key로 넘겨줘야 한다.
+            fileList.map((file, idx) => {
+              return (
+                <ImageThumbnail
+                  key={idx}
+                  idx={idx}
+                  file={file}
+                  length={fileList.length}
+                  handleFileRemove={handleFileRemove}
+                />
+              );
+            })}
+          </FileInputWrapper>
           <Submit type="submit" value="등록하기" />
         </fieldset>
       </Form>
@@ -279,15 +300,31 @@ const WordCount = styled.span`
   font-size: 12px;
 `;
 
+const FileInputWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  height: ${props => (props.length < 4 ? 85 : 180)}px;
+`;
 const FileInput = styled.input`
   display: none;
 `;
-
+const FileUploadIcon = styled(FileUpload)`
+  width: 50%;
+  height: 30%;
+  margin-bottom: 10%;
+`;
 const FileInputButton = styled.div`
-  width: 70px;
-  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(25% - 10px);
+  height: ${props => (props.length < 4 ? '100%' : 'calc(50% - 5px)')};
+  margin: 0 10px 10px 0;
   border: 1px dashed #7b7b7b;
   cursor: pointer;
+  color: ${props => (props.length === 7 ? 'red' : '#333')};
 `;
 const Submit = styled.input`
   width: 100%;
