@@ -16,15 +16,16 @@ const ImageThumbnail = props => {
     };
   });
 
-  const handleOverlay = () => {
+  const handleOverlay = e => {
+    e.stopPropagation();
     setOverlay(!overlay);
   };
 
   return imageSrc ? (
     <ThumbnailWrapper
       length={length}
-      onMouseEnter={() => handleOverlay()}
-      onMouseLeave={() => handleOverlay()}
+      onMouseEnter={e => handleOverlay(e)}
+      onMouseLeave={e => handleOverlay(e)}
       onClick={() => handleFileRemove(idx)}
     >
       {overlay ? (
