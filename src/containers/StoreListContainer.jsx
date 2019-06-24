@@ -41,6 +41,7 @@ class StoreListContainer extends Component {
 }
 
 const mapStateToProps = (state, { location }) => {
+  console.log('state', state);
   const category = queryString.parse(location.search).category || 'all';
   return {
     list: getVisibleList(state, category),

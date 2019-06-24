@@ -30,7 +30,7 @@ class MapContainer extends Component {
 
   render() {
     const { list } = this.props;
-    console.log(list);
+    console.log('list', list);
     return <Map list={list} />;
   }
 }
@@ -44,13 +44,6 @@ const mapStateToProps = (state, { location }) => {
     errorMessage: getErrorMessage(state, category),
   };
 };
-
-// MapContainer = withRouter(
-//   connect(
-//     mapStateToProps,
-//     { fetchList },
-//   )(MapContainer),
-// );
 
 export default withRouter(
   connect(
