@@ -6,27 +6,32 @@ import './Map.css';
 import { withMap } from '../../contexts/MapContext';
 
 class Map extends Component {
-  state = {
-    onMarker: false,
-  };
-
   componentDidMount() {
-    const { handleMap, list } = this.props;
+    const {
+      handleMap,
+      list,
+      position: { latitude, longitude },
+    } = this.props;
+
     try {
-      handleMap(list);
+      handleMap(list, latitude, longitude);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { handleMap, list } = this.props;
+  componentDidUpdate(prevPros) {
+    const {
+      handleMap,
+      list,
+      position: { latitude, longitude },
+    } = this.props;
 
-    if (!_.isEqual(list, prevProps.list)) {
+    if (!_.isEqual(prevPros.list, list)) {
       try {
-        handleMap(list);
+        handleMap(list, latitude, longitude);
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     }
   }

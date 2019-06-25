@@ -13,15 +13,49 @@ import {
 } from '../ducks/list';
 
 class MapContainer extends Component {
+  state = {
+    latitude: null,
+    longitude: null,
+  };
+
   componentDidMount() {
-    this.fetchData();
+    try {
+      this.getPositionAndData();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.category !== prevProps.category) {
-      this.fetchData();
+    const { category } = this.props;
+    if (prevProps.category !== category) {
+      try {
+        this.fetchData();
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
+
+  getPosition = () => {
+    new Promise(res =>
+      window.navigator.geolocation.getCurrentPosition(res),
+    ).then(position => {
+      this.setPosition(position.coords.latitude, position.coords.longitude);
+    });
+  };
+
+  setPosition = (latitude, longitude) => {
+    this.setState({
+      latitude,
+      longitude,
+    });
+  };
+
+  getPositionAndData = async () => {
+    await this.getPosition();
+    await this.fetchData();
+  };
 
   fetchData() {
     const { category, fetchList } = this.props;
@@ -30,8 +64,17 @@ class MapContainer extends Component {
 
   render() {
     const { list } = this.props;
-    console.log('list', list);
-    return <Map list={list} />;
+    const { latitude, longitude } = this.state;
+    console.log(list, latitude, longitude);
+    return (
+      <>
+        {list.length !== 0 && latitude && longitude ? (
+          <Map list={list} position={{ latitude, longitude }} />
+        ) : (
+          <div>loading...</div>
+        )}
+      </>
+    );
   }
 }
 

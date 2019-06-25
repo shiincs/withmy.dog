@@ -28,11 +28,17 @@ class MapProvider extends Component {
     });
   };
 
-  handleMap = list => {
+  handleMap = (list, latitude, longitude) => {
     /* 맵이 렌더링 될 엘리먼트 지정 */
     const el = document.getElementById('mapEl');
 
     /* 맵 옵션 생성 */
+    // const mapOptions = {
+    //   center:
+    //     latitude && longitude
+    //       ? new daum.maps.LatLng(latitude, longitude)
+    //       : new daum.maps.LatLng(37.552617, 126.904614),
+    // };
     const mapOptions = {
       center:
         list.length > 0
