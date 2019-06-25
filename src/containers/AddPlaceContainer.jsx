@@ -1,9 +1,11 @@
 /* global daum */
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import AddPlace from '../components/AddPlace';
 import { withMap } from '../contexts/MapContext';
+import { getPlaceData } from '../ducks/addPlace';
 
 class AddPlaceContainer extends Component {
   state = {
@@ -45,7 +47,7 @@ class AddPlaceContainer extends Component {
     });
 
     // 검색결과 항목을 Element로 반환하는 함수입니다
-    const getListItem = places => {
+    const getListItem = place => {
       const li = document.createElement('li');
       const dl = document.createElement('dl');
       const dt = document.createElement('dt');
@@ -54,8 +56,8 @@ class AddPlaceContainer extends Component {
 
       btn.setAttribute('type', 'button');
 
-      dt.textContent = places.place_name;
-      dd.textContent = places.address_name;
+      dt.textContent = place.place_name;
+      dd.textContent = place.address_name;
 
       dl.appendChild(dt);
       dl.appendChild(dd);
@@ -64,6 +66,8 @@ class AddPlaceContainer extends Component {
       li.appendChild(btn);
       li.className = 'searchListItem';
       li.onclick = event => {
+        const { getData } = this.props;
+        getData(place);
         if (event.target.nodeName !== 'BUTTON') return;
         this.handleSelect(event);
       };
@@ -178,4 +182,12 @@ class AddPlaceContainer extends Component {
   }
 }
 
-export default withMap(AddPlaceContainer);
+const mapDispatchToProps = dispatch => ({
+  getData: place => {
+    dispatch(getPlaceData(place));
+  },
+});
+export default connect(
+  null,
+  mapDispatchToProps,
+)(withMap(AddPlaceContainer));
