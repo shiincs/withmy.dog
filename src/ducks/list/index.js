@@ -52,10 +52,7 @@ export const getErrorMessage = (state, category) => {
 };
 
 // fetchList action
-export const fetchList = category => async (dispatch, getState) => {
-  if (getIsFetching(getState(), category)) {
-    return Promise.resolve();
-  }
+export const fetchList = category => async (dispatch) => {
   // fetch request
   try {
     dispatch(fetchListRequest(category));
