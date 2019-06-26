@@ -19,7 +19,7 @@
   - Library - `react v16.8.6` / `react-router-dom v5.0.0`/ `redux v4.0.1` / `react-redux v7.0.3` / `redux-thunk v2.3.0` / `axios v0.19.0` / `styled-components v4.2.0` / `lodash v4.17.11` / `query-string v6.6.0`
   - DevTools - `eslint-config-airbnb v17.1.0` / `eslint-config-prettier v4.2.0` / `redux-devtools-extension v2.13.8`
   - This Project created by `Create-React-App v3.0.1` (includes babel, webpack configs)
-  - Etc - `Kakao Map API`
+  - Etc - `RESTful API` / `Kakao Map API` / `Slack` / `Notion`
 
 - 기능
   1. 애견동반 가능 장소 지도에 표시
