@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import AddPlace from '../components/AddPlace';
-import { withMap } from '../contexts/MapContext';
+// import { withMap } from '../contexts/MapContext';
 import { getPlaceData } from '../ducks/addPlace';
 
 class AddPlaceContainer extends Component {
@@ -190,4 +190,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps,
-)(withMap(AddPlaceContainer));
+)(AddPlaceContainer);
