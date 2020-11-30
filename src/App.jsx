@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import ProfileContainer from './containers/ProfileContainer';
 import AddPlaceContainer from './containers/AddPlaceContainer';
 import MainContainer from './containers/MainContainer';
-import IntroContainer from './containers/IntroContainer';
 import LoginFormContainer from './containers/LoginFormContainer';
 import AddPlaceFormContainer from './containers/AddPlaceFormContainer';
 import AddReviewFormContainer from './containers/AddReviewFormContainer';
@@ -32,15 +31,11 @@ class App extends React.Component {
           <Route path="/addplace/search" component={AddPlaceContainer} />
           <Route path="/addplace/form" component={AddPlaceFormContainer} />
           <Route path="/review/form" component={AddReviewFormContainer} />
-          {localStorage.getItem('noMoreIntro') ? (
-            <Route
-              exact
-              path="/"
-              render={() => <Redirect to="/place?category=all" />}
-            />
-          ) : (
-            <Route exact path="/" component={IntroContainer} />
-          )}
+          <Route
+            exact
+            path="/"
+            render={() => <Redirect to="/place?category=all" />}
+          />
         </Router>
       </MapProvider>
     );
